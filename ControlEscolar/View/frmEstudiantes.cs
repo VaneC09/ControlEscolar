@@ -275,7 +275,7 @@ namespace ControlEscolar.View
                 EstudiantesController estudiantesController = new EstudiantesController();
 
                 //Obtener la lista de estudiantes
-                List<Estudiante> estudiantes = estudiantesController.ObtnerTodosLosEstudiantes(
+                List<Estudiante> estudiantes = estudiantesController.ObtenerTodosLosEstudiantes(
                     soloActivos: false,
                     tipofecha: cmbTipoFecha.SelectedValue != null ? (int)cmbTipoFecha.SelectedValue : 0,
                     fechaInicio: dtpFechaInicio.Enabled ? dtpFechaInicio.Value : (DateTime?)null,
