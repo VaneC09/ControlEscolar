@@ -32,7 +32,7 @@ namespace ControlEscolarCore.Controller
             }
         }
 
-        public List<Estudiante> ObtnerTodosLosEstudiantes(bool soloActivos = true, int tipofecha = 0, DateTime? fechaInicio = null, DateTime? fechaFin = null)
+        public List<Estudiante> ObtenerTodosLosEstudiantes(bool soloActivos = true, int tipofecha = 0, DateTime? fechaInicio = null, DateTime? fechaFin = null)
         {
             try
             {
@@ -173,7 +173,7 @@ namespace ControlEscolarCore.Controller
             try
             {
                 //obtener los estudiantes
-                var estudiantes = ObtnerTodosLosEstudiantes(soloActivos, tipoFecha, fechaInicio, fechaFin);
+                var estudiantes = ObtenerTodosLosEstudiantes(soloActivos, tipoFecha, fechaInicio, fechaFin);
                 if (estudiantes == null || estudiantes.Count == 0)
                 {
                     _logger.Warn("No se encontraron estudiantes para exportar");

@@ -37,7 +37,7 @@ namespace API_Estudiantes_Test
         {
             try
             {
-                var estudiantes = _estudiantesController.ObtnerTodosLosEstudiantes(
+                var estudiantes = _estudiantesController.ObtenerTodosLosEstudiantes(
                     soloActivos,
                     tipoFecha,
                     fechaInicio,
