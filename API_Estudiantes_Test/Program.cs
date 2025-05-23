@@ -1,15 +1,20 @@
+using ControlEscolarCore.Controller;
+using ControlEscolarCore.Data;
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Configurar la cadena de conexión para PostgreSQLDataAccess
+PostgreSQLDataAccess.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-
-// Aquí agregas esta línea para registrar el controlador que necesitas inyectar
-builder.Services.AddTransient<ControlEscolarCore.Controller.EstudiantesController>();
-
-// Swagger
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//Agregamos el controller de Estudiantes
+builder.Services.AddScoped<EstudiantesController>();
 
 var app = builder.Build();
 
@@ -25,3 +30,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
