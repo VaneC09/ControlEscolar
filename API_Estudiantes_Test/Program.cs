@@ -3,7 +3,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Aquí agregas esta línea para registrar el controlador que necesitas inyectar
+builder.Services.AddTransient<ControlEscolarCore.Controller.EstudiantesController>();
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
