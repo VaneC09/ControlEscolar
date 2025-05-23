@@ -254,5 +254,39 @@ namespace ControlEscolarCore.Controller
 
         }
 
+        public (bool exito, string mensaje) ActualizarNombreEstudiante(int idestudiante, string nuevo_nombre)
+        {
+            try
+            {
+
+
+                // Verificar si el estudiante existe
+                Estudiante? estudianteExistente = _estudiantesData.ObtenerEstudiantePorId(idestudiante);
+                if (estudianteExistente == null)
+                {
+                    return (false, $"No se encontró el estudiante con ID {idestudiante}");
+                }
+
+                estudianteExistente.DatosPersonales.NombreCompleto = nuevo_nombre;
+
+
+                bool resultado = _estudiantesData.ActualizarEstudiante(estudianteExistente);
+
+                if (!resultado)
+                {
+                    _logger.Error($"Error al actualizar el estudiante con ID {idestudiante}");
+                    return (false, "Error al actualizar el estudiante en la base de datos");
+                }
+
+                _logger.Info($"Estudiante con ID {idestudiante} actualizado exitosamente");
+                return (true, "Estudiante actualizado exitosamente");
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, $"Error inesperado al actualizar estudiante con ID {idestudiante}");
+                return (false, $"Error inesperado: {ex.Message}");
+            }
+        }
+
     }
 }

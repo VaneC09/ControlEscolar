@@ -53,5 +53,30 @@ namespace API_Estudiantes_Test
         }
 
 
+        /// <summary>
+        /// Actualiza los datos de un estudiante existente.
+        /// </summary>
+        /// <param name="idestudiante">Identificador del estudiante</param>
+        /// <returns>Resultado de la operación</returns>
+        [HttpPut("actualizar_nombreestudiante")]
+        public IActionResult ActualizarEstudiante([FromQuery] int idestudiante, [FromQuery] string nuevo_nombre)
+        {
+            try
+            {
+                var resultado = _estudiantesController.ActualizarNombreEstudiante(idestudiante, nuevo_nombre);
+
+                if (resultado.exito)
+                    return Ok(new { mensaje = resultado.mensaje });
+                else
+                    return BadRequest(new { mensaje = resultado.mensaje });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al actualizar estudiante");
+                return StatusCode(500, "Error interno del servidor: " + ex.Message);
+            }
+        }
+
+
     }
 }
